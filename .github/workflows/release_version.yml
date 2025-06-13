@@ -95,7 +95,11 @@ jobs:
           fi
           
           # Extract release notes for this version
-          sed -n "/## \[${{ steps.get_version.outputs.VERSION }}\]/,/## \[/p" CHANGELOG.md | head -n -1 > release-notes.md
+          if grep -q "## \[" CHANGELOG.md | grep -v "\[${{ steps.get_version.outputs.VERSION }}\]"; then
+            sed -n "/## \[${{ steps.get_version.outputs.VERSION }}\]/,/## \[/p" CHANGELOG.md | head -n -1 > release-notes.md
+          else
+            sed -n "/## \[${{ steps.get_version.outputs.VERSION }}\]/,\$p" CHANGELOG.md > release-notes.md
+          fi
 
       - name: Create GitHub Release
         uses: actions/create-release@v1

@@ -87,13 +87,13 @@ jobs:
         run: |
           cd notifications
           npm version patch --no-git-tag-version
-          sed -i 's/"name": "notifications"/"name": "@'"${{ github.repository_owner }}"'\/notifications_condori"/' package.json
+          sed -i '' 's/"name": "notifications"/"name": "@'"${{ github.repository_owner }}"'\/notifications_condori"/' package.json
 
       - name: Update package.json for customer-app
         run: |
           cd customer-app
           npm version patch --no-git-tag-version
-          sed -i 's/"name": "customer-app"/"name": "@'"${{ github.repository_owner }}"'\/customer-app_condori"/' package.json
+          sed -i '' 's/"name": "customer-app"/"name": "@'"${{ github.repository_owner }}"'\/customer-app_condori"/' package.json
 
       - name: Publish notifications to GitHub Packages
         run: |
