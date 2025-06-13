@@ -1,0 +1,155 @@
+name: Release Version
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version'
+        required: true
+        default: '1.0.0'
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '21'
+          cache: 'npm'
+
+      - name: Get version
+        id: get_version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "VERSION=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          else
+            echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Install and build notifications
+        run: |
+          cd notifications
+          npm ci
+          npm run build
+          npm run test:cov
+
+      - name: Install and build customer-app
+        run: |
+          cd customer-app
+          npm ci
+          npm run build
+          npm run test:cov
+
+      - name: Create distribution packages
+        run: |
+          mkdir -p release-assets
+          
+          # Package notifications
+          cd notifications
+          npm pack
+          mv *.tgz ../release-assets/notifications-${{ steps.get_version.outputs.VERSION }}.tgz
+          cd ..
+          
+          # Package customer-app
+          cd customer-app
+          npm pack
+          mv *.tgz ../release-assets/customer-app-${{ steps.get_version.outputs.VERSION }}.tgz
+          cd ..
+          
+          # Create combined archive
+          tar -czf release-assets/combined-packages-${{ steps.get_version.outputs.VERSION }}.tar.gz notifications/ customer-app/
+
+      - name: Generate changelog
+        id: changelog
+        run: |
+          if [ ! -f CHANGELOG.md ]; then
+            echo "# Changelog" > CHANGELOG.md
+            echo "" >> CHANGELOG.md
+            echo "## [${{ steps.get_version.outputs.VERSION }}] - $(date +%Y-%m-%d)" >> CHANGELOG.md
+            echo "" >> CHANGELOG.md
+            echo "### Added" >> CHANGELOG.md
+            echo "- Bridge Design Pattern implementation in notifications module" >> CHANGELOG.md
+            echo "- Facade Design Pattern implementation in customer-app module" >> CHANGELOG.md
+            echo "- Automated testing and documentation generation" >> CHANGELOG.md
+            echo "- CI/CD pipeline with GitHub Actions" >> CHANGELOG.md
+            echo "" >> CHANGELOG.md
+            echo "### Features" >> CHANGELOG.md
+            echo "- Message sending with SMS and Email providers" >> CHANGELOG.md
+            echo "- Customer registration with validation and notification" >> CHANGELOG.md
+            echo "- Comprehensive unit test coverage" >> CHANGELOG.md
+            echo "- Automated documentation with Compodoc" >> CHANGELOG.md
+          fi
+          
+          # Extract release notes for this version
+          sed -n "/## \[${{ steps.get_version.outputs.VERSION }}\]/,/## \[/p" CHANGELOG.md | head -n -1 > release-notes.md
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.get_version.outputs.VERSION }}
+          release_name: Release ${{ steps.get_version.outputs.VERSION }}
+          body_path: ./release-notes.md
+          draft: false
+          prerelease: false
+
+      - name: Upload notifications package
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release-assets/notifications-${{ steps.get_version.outputs.VERSION }}.tgz
+          asset_name: notifications-${{ steps.get_version.outputs.VERSION }}.tgz
+          asset_content_type: application/gzip
+
+      - name: Upload customer-app package
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release-assets/customer-app-${{ steps.get_version.outputs.VERSION }}.tgz
+          asset_name: customer-app-${{ steps.get_version.outputs.VERSION }}.tgz
+          asset_content_type: application/gzip
+
+      - name: Upload combined package
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release-assets/combined-packages-${{ steps.get_version.outputs.VERSION }}.tar.gz
+          asset_name: combined-packages-${{ steps.get_version.outputs.VERSION }}.tar.gz
+          asset_content_type: application/gzip
+
+      - name: Update package versions
+        run: |
+          cd notifications
+          npm version ${{ steps.get_version.outputs.VERSION }} --no-git-tag-version
+          cd ../customer-app
+          npm version ${{ steps.get_version.outputs.VERSION }} --no-git-tag-version
+
+      - name: Commit version updates
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add notifications/package.json customer-app/package.json CHANGELOG.md
+          git commit -m "Update package versions to ${{ steps.get_version.outputs.VERSION }}" || exit 0
+          git push origin HEAD:main || exit 0

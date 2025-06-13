@@ -1,0 +1,155 @@
+name: Package and Publish
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '21'
+          cache: 'npm'
+          registry-url: 'https://npm.pkg.github.com'
+
+      - name: Install dependencies for notifications
+        run: |
+          cd notifications
+          npm ci
+
+      - name: Run tests for notifications
+        run: |
+          cd notifications
+          npm run test:cov
+
+      - name: Install dependencies for customer-app
+        run: |
+          cd customer-app
+          npm ci
+
+      - name: Run tests for customer-app
+        run: |
+          cd customer-app
+          npm run test:cov
+
+      - name: SonarCloud Scan for notifications
+        uses: SonarSource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: notifications
+          args: >
+            -Dsonar.projectKey=952d3673cba27275dc90eca7a9228f631df11111
+            -Dsonar.organization=tomasyoel
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: SonarCloud Scan for customer-app
+        uses: SonarSource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: customer-app
+          args: >
+            -Dsonar.projectKey=5a9098cfa3e0af2af3d4661aecb1dbfa3fee7332
+            -Dsonar.organization=tomasyoel
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Build notifications package
+        run: |
+          cd notifications
+          npm run build
+
+      - name: Build customer-app package
+        run: |
+          cd customer-app
+          npm run build
+
+      - name: Update package.json for notifications
+        run: |
+          cd notifications
+          npm version patch --no-git-tag-version
+          sed -i 's/"name": "notifications"/"name": "@'"${{ github.repository_owner }}"'\/notifications_condori"/' package.json
+
+      - name: Update package.json for customer-app
+        run: |
+          cd customer-app
+          npm version patch --no-git-tag-version
+          sed -i 's/"name": "customer-app"/"name": "@'"${{ github.repository_owner }}"'\/customer-app_condori"/' package.json
+
+      - name: Publish notifications to GitHub Packages
+        run: |
+          cd notifications
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish customer-app to GitHub Packages
+        run: |
+          cd customer-app
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: test-results
+          path: |
+            notifications/coverage/
+            customer-app/coverage/
+
+  publish-nuget:
+    runs-on: ubuntu-latest
+    needs: test-and-build
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.x'
+
+      - name: Create NuGet package for notifications
+        run: |
+          mkdir -p nuget-packages/notifications
+          cd nuget-packages/notifications
+          dotnet new classlib -n NotificationsPackage
+          dotnet pack -c Release -o ./output
+
+      - name: Create NuGet package for customer-app
+        run: |
+          mkdir -p nuget-packages/customer-app
+          cd nuget-packages/customer-app
+          dotnet new classlib -n CustomerAppPackage
+          dotnet pack -c Release -o ./output
+
+      - name: Publish to GitHub NuGet Registry
+        run: |
+          dotnet nuget push "nuget-packages/notifications/output/*.nupkg" \
+            --source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" \
+            --api-key ${{ secrets.GITHUB_TOKEN }}
+          dotnet nuget push "nuget-packages/customer-app/output/*.nupkg" \
+            --source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" \
+            --api-key ${{ secrets.GITHUB_TOKEN }}

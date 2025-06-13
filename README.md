@@ -535,8 +535,17 @@ npx @compodoc/compodoc -p tsconfig.json -s
 ---
 ## Actividades Encargadas
 1. Completar la documentación de todas las clases, metodos, propiedades y generar una automatizaciòn .github/workflows/publish_docs.yml (Github Workflow) utilizando compodoc y publicar el site de documentaciòn generado en Github Pages.
+
+![](./img/actionpublish.png)
+
 2. Generar una automatización de nombre .github/workflows/package_npm.yml (Github Workflow) que ejecute:
    * Pruebas unitarias y reporte de pruebas automatizadas
    * Realice el analisis con SonarCloud.
    * Contruya los paquetes con nombre notifications_[apellido] y customer-app_[apellido] y lo publique en Github Packages
+
+![](./img/actionpackage.png)
+
 3. Generar una automatización de nombre .github/workflows/release_version.yml (Github Workflow) que contruya la version (release) del paquete y publique en Github Releases.
+
+
+![](./img/actionrelease.png)

@@ -1,0 +1,107 @@
+name: Publish Documentation
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '21'
+          cache: 'npm'
+
+      - name: Install dependencies for notifications
+        run: |
+          cd notifications
+          npm ci
+
+      - name: Generate documentation for notifications
+        run: |
+          cd notifications
+          npx @compodoc/compodoc -p tsconfig.json -d ../docs/notifications --theme material
+
+      - name: Install dependencies for customer-app
+        run: |
+          cd customer-app
+          npm ci
+
+      - name: Generate documentation for customer-app
+        run: |
+          cd customer-app
+          npx @compodoc/compodoc -p tsconfig.json -d ../docs/customer-app --theme material
+
+      - name: Create index.html for docs
+        run: |
+          mkdir -p docs
+          cat > docs/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <title>Documentation</title>
+              <style>
+                  body { font-family: Arial, sans-serif; margin: 40px; }
+                  .container { max-width: 800px; margin: 0 auto; }
+                  .project-link { 
+                      display: block; 
+                      padding: 20px; 
+                      margin: 10px 0; 
+                      background: #f5f5f5; 
+                      text-decoration: none; 
+                      color: #333;
+                      border-radius: 5px;
+                  }
+                  .project-link:hover { background: #e5e5e5; }
+              </style>
+          </head>
+          <body>
+              <div class="container">
+                  <h1>Project Documentation</h1>
+                  <a href="notifications/" class="project-link">
+                      <h3>Notifications Documentation</h3>
+                      <p>Bridge Design Pattern Implementation</p>
+                  </a>
+                  <a href="customer-app/" class="project-link">
+                      <h3>Customer App Documentation</h3>
+                      <p>Facade Design Pattern Implementation</p>
+                  </a>
+              </div>
+          </body>
+          </html>
+          EOF
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './docs'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build-docs
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
