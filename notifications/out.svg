@@ -1,0 +1,233 @@
+<svg version="1.1" baseProfile="full" width="1175.5" height="288.0" viewBox="0 0 1175.5 288" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
+<desc >#.interface: fill=lightblue
+#.enumeration: fill=lightgreen
+#.type: fill=lightgray
+
+[AbstractMessage|\#_messageSender: IMessageSender|+abstract SendMessage(): string]
+[DomainModule||]
+[DomainService||]
+[EmailMessageSender||+SendMessage(): string]
+[IMessageSender]&lt;:--[EmailMessageSender]
+[&lt;interface&gt;IMessageSender||+SendMessage(): string]
+[LongMessage||+SendMessage(): string]
+[AbstractMessage]&lt;:-[LongMessage]
+[ShortMessage|+LARGE_ERROR_MESSAGE: string|+SendMessage(): string]
+[AbstractMessage]&lt;:-[ShortMessage]
+[SmsMessageSender||+SendMessage(): string]
+[IMessageSender]&lt;:--[SmsMessageSender]</desc>
+<g stroke-width="1.0" text-align="left" font="12pt Helvetica, Arial, sans-serif" font-size="12pt" font-family="Helvetica" font-weight="normal" font-style="normal">
+<g font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round" stroke="#33322E">
+<g stroke="transparent" fill="transparent">
+<rect x="0.0" y="0.0" height="288.0" width="1175.5" stroke="none"></rect>
+</g>
+<g transform="translate(8, 8)" fill="#33322E">
+<g transform="translate(20, 20)" fill="#eee8d5" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal">
+<g stroke-dasharray="6 6">
+<path d="M788.3 88.8 L717.5 116 L717.5 148 L717.5 148.0 " fill="none"></path>
+</g>
+<path d="M790.3 93.8 L788.3 88.8 L786.4 83.8 L800.8 84.0 Z"></path>
+<path d="M133.4 101.6 L102.5 116 L102.5 148 L102.5 148.0 " fill="none"></path>
+<path d="M135.6 106.5 L133.4 101.6 L131.1 96.8 L145.4 96.0 Z"></path>
+<path d="M385.9 100.8 L425.5 116 L425.5 136 L425.5 136.0 " fill="none"></path>
+<path d="M387.8 95.8 L385.9 100.8 L384.0 105.8 L373.4 96.0 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M971.0 90.5 L1017 116 L1017 148 L1017.0 148.0 " fill="none"></path>
+</g>
+<path d="M973.6 85.8 L971.0 90.5 L968.4 95.1 L959.4 84.0 Z"></path>
+<g data-name="AbstractMessage">
+<g fill="#eee8d5" stroke="#33322E" data-name="AbstractMessage">
+<rect x="94.0" y="0.0" height="96.0" width="309.0" data-name="AbstractMessage"></rect>
+<path d="M94.0 32.0 L403.0 32.0" fill="none" data-name="AbstractMessage"></path>
+<path d="M94.0 64.0 L403.0 64.0" fill="none" data-name="AbstractMessage"></path>
+</g>
+<g transform="translate(94, 0)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AbstractMessage" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="AbstractMessage" data-compartment="0">
+<a id="libs\domain\src\abstract-message.ts.AbstractMessage" xlink:href="libs\domain\src\abstract-message.ts"><text x="146.5" y="14.1" stroke="none" text-anchor="middle" data-name="AbstractMessage" data-compartment="0">AbstractMessage</text></a>
+
+</g>
+</g>
+<g transform="translate(94, 32)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AbstractMessage" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AbstractMessage" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="AbstractMessage" data-compartment="1">#_messageSender: IMessageSender</text>
+
+</g>
+</g>
+<g transform="translate(94, 64)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AbstractMessage" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AbstractMessage" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="AbstractMessage" data-compartment="2">+abstract SendMessage(): string</text>
+
+</g>
+</g>
+</g>
+<g data-name="DomainModule">
+<g fill="#eee8d5" stroke="#33322E" data-name="DomainModule">
+<rect x="443.0" y="24.0" height="48.0" width="134.0" data-name="DomainModule"></rect>
+<path d="M443.0 56.0 L577.0 56.0" fill="none" data-name="DomainModule"></path>
+<path d="M443.0 64.0 L577.0 64.0" fill="none" data-name="DomainModule"></path>
+</g>
+<g transform="translate(443, 24)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DomainModule" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DomainModule" data-compartment="0">
+<a id="libs\domain\src\domain.module.ts.DomainModule" xlink:href="libs\domain\src\domain.module.ts"><text x="59.0" y="14.1" stroke="none" text-anchor="middle" data-name="DomainModule" data-compartment="0">DomainModule</text></a>
+
+</g>
+</g>
+<g transform="translate(443, 56)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DomainModule" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DomainModule" data-compartment="1">
+
+</g>
+</g>
+<g transform="translate(443, 64)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DomainModule" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DomainModule" data-compartment="2">
+
+</g>
+</g>
+</g>
+<g data-name="DomainService">
+<g fill="#eee8d5" stroke="#33322E" data-name="DomainService">
+<rect x="617.0" y="24.0" height="48.0" width="135.0" data-name="DomainService"></rect>
+<path d="M617.0 56.0 L752.0 56.0" fill="none" data-name="DomainService"></path>
+<path d="M617.0 64.0 L752.0 64.0" fill="none" data-name="DomainService"></path>
+</g>
+<g transform="translate(617, 24)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DomainService" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DomainService" data-compartment="0">
+<a id="libs\domain\src\domain.service.ts.DomainService" xlink:href="libs\domain\src\domain.service.ts"><text x="59.5" y="14.1" stroke="none" text-anchor="middle" data-name="DomainService" data-compartment="0">DomainService</text></a>
+
+</g>
+</g>
+<g transform="translate(617, 56)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DomainService" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DomainService" data-compartment="1">
+
+</g>
+</g>
+<g transform="translate(617, 64)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DomainService" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DomainService" data-compartment="2">
+
+</g>
+</g>
+</g>
+<g data-name="EmailMessageSender">
+<g fill="#eee8d5" stroke="#33322E" data-name="EmailMessageSender">
+<rect x="615.0" y="148.0" height="72.0" width="205.0" data-name="EmailMessageSender"></rect>
+<path d="M615.0 180.0 L820.0 180.0" fill="none" data-name="EmailMessageSender"></path>
+<path d="M615.0 188.0 L820.0 188.0" fill="none" data-name="EmailMessageSender"></path>
+</g>
+<g transform="translate(615, 148)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="EmailMessageSender" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="EmailMessageSender" data-compartment="0">
+<a id="libs\domain\src\email-message-sender.ts.EmailMessageSender" xlink:href="libs\domain\src\email-message-sender.ts"><text x="94.5" y="14.1" stroke="none" text-anchor="middle" data-name="EmailMessageSender" data-compartment="0">EmailMessageSender</text></a>
+
+</g>
+</g>
+<g transform="translate(615, 180)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="EmailMessageSender" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" data-name="EmailMessageSender" data-compartment="1">
+
+</g>
+</g>
+<g transform="translate(615, 188)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="EmailMessageSender" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="EmailMessageSender" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="EmailMessageSender" data-compartment="2">+SendMessage(): string</text>
+
+</g>
+</g>
+</g>
+<g data-name="IMessageSender">
+<g fill="lightblue" stroke="#33322E" data-name="IMessageSender">
+<rect x="792.0" y="12.0" height="72.0" width="205.0" data-name="IMessageSender"></rect>
+<path d="M792.0 44.0 L997.0 44.0" fill="none" data-name="IMessageSender"></path>
+<path d="M792.0 52.0 L997.0 52.0" fill="none" data-name="IMessageSender"></path>
+</g>
+<g transform="translate(792, 12)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IMessageSender" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="IMessageSender" data-compartment="0">
+<a id="libs\domain\src\imessage-sender.interface.ts.IMessageSender" xlink:href="libs\domain\src\imessage-sender.interface.ts"><text x="94.5" y="14.1" stroke="none" text-anchor="middle" data-name="IMessageSender" data-compartment="0">IMessageSender</text></a>
+
+</g>
+</g>
+<g transform="translate(792, 44)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IMessageSender" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" data-name="IMessageSender" data-compartment="1">
+
+</g>
+</g>
+<g transform="translate(792, 52)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="IMessageSender" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="IMessageSender" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="IMessageSender" data-compartment="2">+SendMessage(): string</text>
+
+</g>
+</g>
+</g>
+<g data-name="LongMessage">
+<g fill="#eee8d5" stroke="#33322E" data-name="LongMessage">
+<rect x="0.0" y="148.0" height="72.0" width="205.0" data-name="LongMessage"></rect>
+<path d="M0.0 180.0 L205.0 180.0" fill="none" data-name="LongMessage"></path>
+<path d="M0.0 188.0 L205.0 188.0" fill="none" data-name="LongMessage"></path>
+</g>
+<g transform="translate(0, 148)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="LongMessage" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="LongMessage" data-compartment="0">
+<a id="libs\domain\src\long-message.ts.LongMessage" xlink:href="libs\domain\src\long-message.ts"><text x="94.5" y="14.1" stroke="none" text-anchor="middle" data-name="LongMessage" data-compartment="0">LongMessage</text></a>
+
+</g>
+</g>
+<g transform="translate(0, 180)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LongMessage" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" data-name="LongMessage" data-compartment="1">
+
+</g>
+</g>
+<g transform="translate(0, 188)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LongMessage" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="LongMessage" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="LongMessage" data-compartment="2">+SendMessage(): string</text>
+
+</g>
+</g>
+</g>
+<g data-name="ShortMessage">
+<g fill="#eee8d5" stroke="#33322E" data-name="ShortMessage">
+<rect x="276.0" y="136.0" height="96.0" width="299.0" data-name="ShortMessage"></rect>
+<path d="M276.0 168.0 L575.0 168.0" fill="none" data-name="ShortMessage"></path>
+<path d="M276.0 200.0 L575.0 200.0" fill="none" data-name="ShortMessage"></path>
+</g>
+<g transform="translate(276, 136)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ShortMessage" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ShortMessage" data-compartment="0">
+<a id="libs\domain\src\short-message.ts.ShortMessage" xlink:href="libs\domain\src\short-message.ts"><text x="141.5" y="14.1" stroke="none" text-anchor="middle" data-name="ShortMessage" data-compartment="0">ShortMessage</text></a>
+
+</g>
+</g>
+<g transform="translate(276, 168)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ShortMessage" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ShortMessage" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="ShortMessage" data-compartment="1">+LARGE_ERROR_MESSAGE: string</text>
+
+</g>
+</g>
+<g transform="translate(276, 200)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ShortMessage" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ShortMessage" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="ShortMessage" data-compartment="2">+SendMessage(): string</text>
+
+</g>
+</g>
+</g>
+<g data-name="SmsMessageSender">
+<g fill="#eee8d5" stroke="#33322E" data-name="SmsMessageSender">
+<rect x="914.5" y="148.0" height="72.0" width="205.0" data-name="SmsMessageSender"></rect>
+<path d="M914.5 180.0 L1119.5 180.0" fill="none" data-name="SmsMessageSender"></path>
+<path d="M914.5 188.0 L1119.5 188.0" fill="none" data-name="SmsMessageSender"></path>
+</g>
+<g transform="translate(914.5, 148)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="SmsMessageSender" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="SmsMessageSender" data-compartment="0">
+<a id="libs\domain\src\sms-message-sender.ts.SmsMessageSender" xlink:href="libs\domain\src\sms-message-sender.ts"><text x="94.5" y="14.1" stroke="none" text-anchor="middle" data-name="SmsMessageSender" data-compartment="0">SmsMessageSender</text></a>
+
+</g>
+</g>
+<g transform="translate(914.5, 180)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SmsMessageSender" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" data-name="SmsMessageSender" data-compartment="1">
+
+</g>
+</g>
+<g transform="translate(914.5, 188)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="SmsMessageSender" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="SmsMessageSender" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="SmsMessageSender" data-compartment="2">+SendMessage(): string</text>
+
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>

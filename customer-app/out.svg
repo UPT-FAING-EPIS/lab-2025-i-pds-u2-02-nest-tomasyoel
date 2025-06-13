@@ -1,0 +1,196 @@
+<svg version="1.1" baseProfile="full" width="1814.0" height="217.0" viewBox="0 0 1814 217" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
+<desc >#.interface: fill=lightblue
+#.enumeration: fill=lightgreen
+#.type: fill=lightgray
+
+[CustomerRegistration||+RegisterCustomer(): boolean]
+[Customer|+Name: string;+Email: string;+MobileNumber: string;+Address: string;+Password: string|+static Create(): Customer]
+[DataAccessLayer|+Customers: Customer\[\]|+SaveCustomer(): boolean]
+[DomainModule||]
+[DomainService||]
+[EmailService||+SendRegistrationEmail(): boolean]
+[Validator||+ValidateCustomer(): boolean]</desc>
+<g stroke-width="1.0" text-align="left" font="12pt Helvetica, Arial, sans-serif" font-size="12pt" font-family="Helvetica" font-weight="normal" font-style="normal">
+<g font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round" stroke="#33322E">
+<g stroke="transparent" fill="transparent">
+<rect x="0.0" y="0.0" height="217.0" width="1814.0" stroke="none"></rect>
+</g>
+<g transform="translate(8, 8)" fill="#33322E">
+<g transform="translate(20, 20)">
+<g data-name="CustomerRegistration">
+<g fill="#eee8d5" stroke="#33322E" data-name="CustomerRegistration">
+<rect x="0.0" y="44.5" height="72.0" width="254.0" data-name="CustomerRegistration"></rect>
+<path d="M0.0 76.5 L254.0 76.5" fill="none" data-name="CustomerRegistration"></path>
+<path d="M0.0 84.5 L254.0 84.5" fill="none" data-name="CustomerRegistration"></path>
+</g>
+<g transform="translate(0, 44.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="CustomerRegistration" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="CustomerRegistration" data-compartment="0">
+<a id="libs\domain\src\customer-registration.ts.CustomerRegistration" xlink:href="libs\domain\src\customer-registration.ts"><text x="119.0" y="14.1" stroke="none" text-anchor="middle" data-name="CustomerRegistration" data-compartment="0">CustomerRegistration</text></a>
+
+</g>
+</g>
+<g transform="translate(0, 76.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CustomerRegistration" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" data-name="CustomerRegistration" data-compartment="1">
+
+</g>
+</g>
+<g transform="translate(0, 84.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CustomerRegistration" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CustomerRegistration" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="CustomerRegistration" data-compartment="2">+RegisterCustomer(): boolean</text>
+
+</g>
+</g>
+</g>
+<g data-name="Customer">
+<g fill="#eee8d5" stroke="#33322E" data-name="Customer">
+<rect x="294.0" y="0.0" height="161.0" width="224.0" data-name="Customer"></rect>
+<path d="M294.0 32.0 L518.0 32.0" fill="none" data-name="Customer"></path>
+<path d="M294.0 129.0 L518.0 129.0" fill="none" data-name="Customer"></path>
+</g>
+<g transform="translate(294, 0)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Customer" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Customer" data-compartment="0">
+<a id="libs\domain\src\customer.ts.Customer" xlink:href="libs\domain\src\customer.ts"><text x="104.0" y="14.1" stroke="none" text-anchor="middle" data-name="Customer" data-compartment="0">Customer</text></a>
+
+</g>
+</g>
+<g transform="translate(294, 32)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Customer" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Customer" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="Customer" data-compartment="1">+Name: string</text>
+<text x="0.0" y="30.3" stroke="none" data-name="Customer" data-compartment="1">+Email: string</text>
+<text x="0.0" y="46.5" stroke="none" data-name="Customer" data-compartment="1">+MobileNumber: string</text>
+<text x="0.0" y="62.7" stroke="none" data-name="Customer" data-compartment="1">+Address: string</text>
+<text x="0.0" y="78.9" stroke="none" data-name="Customer" data-compartment="1">+Password: string</text>
+
+</g>
+</g>
+<g transform="translate(294, 129)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Customer" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Customer" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="Customer" data-compartment="2">+static Create(): Customer</text>
+
+</g>
+</g>
+</g>
+<g data-name="DataAccessLayer">
+<g fill="#eee8d5" stroke="#33322E" data-name="DataAccessLayer">
+<rect x="558.0" y="32.5" height="96.0" width="228.0" data-name="DataAccessLayer"></rect>
+<path d="M558.0 64.5 L786.0 64.5" fill="none" data-name="DataAccessLayer"></path>
+<path d="M558.0 96.5 L786.0 96.5" fill="none" data-name="DataAccessLayer"></path>
+</g>
+<g transform="translate(558, 32.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DataAccessLayer" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DataAccessLayer" data-compartment="0">
+<a id="libs\domain\src\data-access-layer.ts.DataAccessLayer" xlink:href="libs\domain\src\data-access-layer.ts"><text x="106.0" y="14.1" stroke="none" text-anchor="middle" data-name="DataAccessLayer" data-compartment="0">DataAccessLayer</text></a>
+
+</g>
+</g>
+<g transform="translate(558, 64.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DataAccessLayer" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DataAccessLayer" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="DataAccessLayer" data-compartment="1">+Customers: Customer[]</text>
+
+</g>
+</g>
+<g transform="translate(558, 96.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DataAccessLayer" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DataAccessLayer" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="DataAccessLayer" data-compartment="2">+SaveCustomer(): boolean</text>
+
+</g>
+</g>
+</g>
+<g data-name="DomainModule">
+<g fill="#eee8d5" stroke="#33322E" data-name="DomainModule">
+<rect x="826.0" y="56.5" height="48.0" width="134.0" data-name="DomainModule"></rect>
+<path d="M826.0 88.5 L960.0 88.5" fill="none" data-name="DomainModule"></path>
+<path d="M826.0 96.5 L960.0 96.5" fill="none" data-name="DomainModule"></path>
+</g>
+<g transform="translate(826, 56.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DomainModule" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DomainModule" data-compartment="0">
+<a id="libs\domain\src\domain.module.ts.DomainModule" xlink:href="libs\domain\src\domain.module.ts"><text x="59.0" y="14.1" stroke="none" text-anchor="middle" data-name="DomainModule" data-compartment="0">DomainModule</text></a>
+
+</g>
+</g>
+<g transform="translate(826, 88.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DomainModule" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DomainModule" data-compartment="1">
+
+</g>
+</g>
+<g transform="translate(826, 96.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DomainModule" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DomainModule" data-compartment="2">
+
+</g>
+</g>
+</g>
+<g data-name="DomainService">
+<g fill="#eee8d5" stroke="#33322E" data-name="DomainService">
+<rect x="1000.0" y="56.5" height="48.0" width="135.0" data-name="DomainService"></rect>
+<path d="M1000.0 88.5 L1135.0 88.5" fill="none" data-name="DomainService"></path>
+<path d="M1000.0 96.5 L1135.0 96.5" fill="none" data-name="DomainService"></path>
+</g>
+<g transform="translate(1000, 56.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DomainService" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DomainService" data-compartment="0">
+<a id="libs\domain\src\domain.service.ts.DomainService" xlink:href="libs\domain\src\domain.service.ts"><text x="59.5" y="14.1" stroke="none" text-anchor="middle" data-name="DomainService" data-compartment="0">DomainService</text></a>
+
+</g>
+</g>
+<g transform="translate(1000, 88.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DomainService" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DomainService" data-compartment="1">
+
+</g>
+</g>
+<g transform="translate(1000, 96.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DomainService" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DomainService" data-compartment="2">
+
+</g>
+</g>
+</g>
+<g data-name="EmailService">
+<g fill="#eee8d5" stroke="#33322E" data-name="EmailService">
+<rect x="1175.0" y="44.5" height="72.0" width="291.0" data-name="EmailService"></rect>
+<path d="M1175.0 76.5 L1466.0 76.5" fill="none" data-name="EmailService"></path>
+<path d="M1175.0 84.5 L1466.0 84.5" fill="none" data-name="EmailService"></path>
+</g>
+<g transform="translate(1175, 44.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="EmailService" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="EmailService" data-compartment="0">
+<a id="libs\domain\src\email-service.ts.EmailService" xlink:href="libs\domain\src\email-service.ts"><text x="137.5" y="14.1" stroke="none" text-anchor="middle" data-name="EmailService" data-compartment="0">EmailService</text></a>
+
+</g>
+</g>
+<g transform="translate(1175, 76.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="EmailService" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" data-name="EmailService" data-compartment="1">
+
+</g>
+</g>
+<g transform="translate(1175, 84.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="EmailService" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="EmailService" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="EmailService" data-compartment="2">+SendRegistrationEmail(): boolean</text>
+
+</g>
+</g>
+</g>
+<g data-name="Validator">
+<g fill="#eee8d5" stroke="#33322E" data-name="Validator">
+<rect x="1506.0" y="44.5" height="72.0" width="252.0" data-name="Validator"></rect>
+<path d="M1506.0 76.5 L1758.0 76.5" fill="none" data-name="Validator"></path>
+<path d="M1506.0 84.5 L1758.0 84.5" fill="none" data-name="Validator"></path>
+</g>
+<g transform="translate(1506, 44.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Validator" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Validator" data-compartment="0">
+<a id="libs\domain\src\validator.ts.Validator" xlink:href="libs\domain\src\validator.ts"><text x="118.0" y="14.1" stroke="none" text-anchor="middle" data-name="Validator" data-compartment="0">Validator</text></a>
+
+</g>
+</g>
+<g transform="translate(1506, 76.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Validator" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" data-name="Validator" data-compartment="1">
+
+</g>
+</g>
+<g transform="translate(1506, 84.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Validator" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Validator" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="Validator" data-compartment="2">+ValidateCustomer(): boolean</text>
+
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
